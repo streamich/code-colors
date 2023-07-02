@@ -23,12 +23,18 @@ hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershe
 hljs.registerLanguage('vim', require('highlight.js/lib/languages/vim'));
 hljs.registerLanguage('fsharp', require('highlight.js/lib/languages/fsharp'));
 
-const tokenRegex = /[_:]/g;
+const normalizeScope = (name: string): string[] => {
+  if (name.startsWith('language:')) return [name.replace('language:', 'language-')]
+  if (name.includes('.')) {
+    const pieces = name.split('.');
+    return [pieces.shift()!, ...(pieces.map((x, i) => `${x}${"_".repeat(i + 1)}`))];
+  }
+  return [name];
+};
 
 const normalizeToken = (node: HljsNode): Token => {
   if (typeof node === 'string') return node.length;
   const {children, language, scope = ''} = node;
-  const normalizedScope = scope.replace(tokenRegex, '-').split('.');;
   const tokenChildren: Token[] = [];
   const length = children.length;
   for (let i = 0; i < length; i++) {
@@ -38,7 +44,7 @@ const normalizeToken = (node: HljsNode): Token => {
       tokenChildren[tokenChildren.length - 1] = last + child;
     else tokenChildren.push(child);
   }
-  const token: Token = [normalizedScope, tokenChildren];
+  const token: Token = [normalizeScope(scope), tokenChildren];
   if (language) token.push(language);
   return token;
 };
