@@ -1,4 +1,4 @@
-import type {HighlightResult, Token} from "./types";
+import type {HighlightResult, HljsNode, Token} from "./types";
 const hljs = require('highlight.js/lib/common');
 
 hljs.configure({classPrefix: ''});
@@ -23,37 +23,25 @@ hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershe
 hljs.registerLanguage('vim', require('highlight.js/lib/languages/vim'));
 hljs.registerLanguage('fsharp', require('highlight.js/lib/languages/fsharp'));
 
-const parser = new DOMParser();
-const parseHtml = (html: string): Token[] => {
-  const doc = parser.parseFromString(html, 'text/html');
-  const list = doc.body.childNodes;
-  const tokens: Token[] = [];
-  list.forEach((node: Node) => {
-    if (node instanceof HTMLElement) {
-      const className = node.className;
-      const text = node.textContent;
-      const length = text?.length || 0;
-      const token: Token = [length, className.split(' ')];
-      tokens.push(token);
-    } else {
-      const text = node.textContent;
-      const length = text?.length || 0;
-      const token: Token = length;
-      tokens.push(token);
-    }
-  });
-  return tokens;
+const normalizeToken = (node: HljsNode): Token => {
+  if (typeof node === 'string') return node.length;
+  const {children, language, scope = ''} = node;
+  const token: Token = [scope, children.map(normalizeToken)];
+  if (language) token.push(language);
+  return token;
 };
 
 export const highlight = (code: string, lang?: string): HighlightResult => {
   if (lang) lang = lang.toLowerCase();
   try {
-    const {value, language} = lang ? hljs.highlight(code, {language: lang}) : hljs.highlightAuto(code);
-    return [language, parseHtml(value)];
+    const {language, _emitter} = lang ? hljs.highlight(code, {language: lang}) : hljs.highlightAuto(code);
+    const token = normalizeToken(_emitter.rootNode as HljsNode)
+    return [language, token];
   } catch (error) {
     if (error && typeof error === 'object' && typeof error.message === 'string' && error.message.startsWith('Unknown language:')) {
-      const {value, language} = hljs.highlightAuto(code);
-      return [language, parseHtml(value)];
+      const {language, _emitter} = hljs.highlightAuto(code);
+      const token = normalizeToken(_emitter.rootNode as HljsNode)
+      return [language, token];
     }
     throw error;
   }

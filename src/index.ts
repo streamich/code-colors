@@ -3,3 +3,5 @@ export * from './hljs';
 
 import './window';
 import './worker';
+
+import './test';
