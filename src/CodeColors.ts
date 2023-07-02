@@ -12,7 +12,11 @@ export class CodeColors {
   public constructor(workerUrl: string) {
     const ready = new Defer<void>();
     this.workerReady = ready.promise;
-    this.worker = new Worker(workerUrl);
+    const js = `importScripts("${workerUrl}");`;
+    const blob = new Blob([js], {type: "text/javascript"});
+    const objectUrl = URL.createObjectURL(blob);
+    this.worker = new Worker(objectUrl);
+    URL.revokeObjectURL(objectUrl);
     this.worker.addEventListener('message', (event) => {
       const msg = event.data;
       if (!Array.isArray(msg)) return;

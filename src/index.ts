@@ -1,6 +1,6 @@
 export type * from './types';
 export * from './hljs';
-export * from './async';
+export * from './CodeColors';
 
 import './window';
 import './worker';

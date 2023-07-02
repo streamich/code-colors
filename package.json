@@ -2,7 +2,7 @@
   "name": "code-colors",
   "version": "1.0.0",
   "description": "Code syntax highlighting for the web",
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
     "lib/",
     "dist/",

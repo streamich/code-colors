@@ -1,5 +1,5 @@
 import {highlight} from "./hljs";
-import {CodeColors} from "./async";
+import {CodeColors} from "./CodeColors";
 
 const main = async () => {
   const code = `
