@@ -28,7 +28,7 @@ const tokenRegex = /[_:]/g;
 const normalizeToken = (node: HljsNode): Token => {
   if (typeof node === 'string') return node.length;
   const {children, language, scope = ''} = node;
-  const normalizedScope = scope.replace(tokenRegex, '-');
+  const normalizedScope = scope.replace(tokenRegex, '-').split('.');;
   const tokenChildren: Token[] = [];
   const length = children.length;
   for (let i = 0; i < length; i++) {
@@ -48,13 +48,13 @@ export const highlight = (code: string, lang?: string): TokenNode => {
   try {
     const {language, _emitter} = lang ? hljs.highlight(code, {language: lang}) : hljs.highlightAuto(code);
     const token = normalizeToken(_emitter.rootNode as HljsNode) as TokenNode;
-    token[0] = 'language-' + language; 
+    token[0] = ['language-' + language]; 
     return token;
   } catch (error) {
     if (error && typeof error === 'object' && typeof error.message === 'string' && error.message.startsWith('Unknown language:')) {
       const {language, _emitter} = hljs.highlightAuto(code);
       const token = normalizeToken(_emitter.rootNode as HljsNode) as TokenNode;
-      token[0] = 'language-' + language; 
+      token[0] = ['language-' + language]; 
       return token;
     }
     throw error;

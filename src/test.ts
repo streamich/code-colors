@@ -12,13 +12,13 @@ const main = async () => {
   console.log('Can auto-detect and parse JavaScript');
   const res1 = await highlight(code);
   console.log('js', res1);
-  console.assert(res1[0] === 'language-javascript', 'Auto-detection failed');
+  console.assert(res1[0][0] === 'language-javascript', 'Auto-detection failed');
   console.assert(res1[1].length > 10, 'Returned unexpected number of tokens');
 
   console.log('Can parse nested languages');
   const res2 = await highlight('<h1>Hello World!</h1><style>.test {border: 1px solid red;}</style>');
   console.log('xml', res2);
-  console.assert(res2[0] === 'language-xml', 'Auto-detection failed');
+  console.assert(res2[0][0] === 'language-xml', 'Auto-detection failed');
   
   console.log('Can parse JavaScript in Worker thread');
   const url = (<any>document.currentScript).src;
