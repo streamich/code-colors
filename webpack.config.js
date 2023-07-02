@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -13,6 +14,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'code-colors',
     }),
+    new webpack.ContextReplacementPlugin(
+      /\/highlight.js\//,
+      (data) => {
+        delete data.dependencies[0].critical;
+        return data;
+      },
+    ),
   ],
   module: {
     rules: [

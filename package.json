@@ -3,8 +3,18 @@
   "version": "0.1.0",
   "description": "Code syntax highlighting for the web",
   "main": "index.js",
+  "files": [
+    "lib/",
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "start": "webpack serve --config ./webpack.config.js",
+    "build": "yarn clean && yarn build:web && yarn build:cjs",
+    "build:web": "NODE_ENV=production webpack --config ./webpack.config.js && rimraf dist/index.html",
+    "build:cjs": "tsc --project tsconfig.json",
+    "clean": "rimraf dist lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +29,7 @@
   "homepage": "https://github.com/streamich/code-colors#readme",
   "dependencies": {
     "highlight.js": "^11.8.0",
+    "json-joy": "^9.3.0",
     "thingies": "^1.11.1"
   },
   "peerDependencies": {
@@ -26,6 +37,7 @@
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.5.3",
+    "rimraf": "^5.0.1",
     "ts-loader": "^9.4.4",
     "tslib": "^2.6.0",
     "typescript": "^5.1.6",
