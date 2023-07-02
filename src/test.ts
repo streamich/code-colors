@@ -1,5 +1,5 @@
-import {CompactMessageType} from "json-joy/lib/reactive-rpc/common/codec/compact/constants";
 import {highlight} from "./hljs";
+import {CodeColors} from "./async";
 
 const main = async () => {
   const code = `
@@ -20,18 +20,13 @@ const main = async () => {
   console.log('xml', res2);
   console.assert(res2[0] === 'language-xml', 'Auto-detection failed');
   
-  
   console.log('Can parse JavaScript in Worker thread');
   const url = (<any>document.currentScript).src;
   console.log('Worker URL:', url);
-  const worker = new Worker(url);
-  worker.onmessage = e => {
-    const msg = e.data;
-    if (!Array.isArray(msg)) return;
-    if (msg[0] !== CompactMessageType.Notification || msg[1] !== 'ready') return;
-    console.log('Worker is ready');
-    // worker.postMessage(['highlight', {code}]);
-  };
+  const colors = new CodeColors(url);
+  const res3 = await colors.highlight(code);
+  console.log('js from worker', res3);
+  console.assert(JSON.stringify(res3) === JSON.stringify(res1), 'Unexpected result from worker');
 };
 
 if (typeof window !== 'undefined') {

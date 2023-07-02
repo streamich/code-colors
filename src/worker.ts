@@ -10,13 +10,13 @@ if (isWorker) {
     const msg = e.data;
     if (!Array.isArray(msg)) return;
     if (msg[0] !== CompactMessageType.RequestComplete) return;
-    const [, id, method, params] = msg as CompactRequestCompleteMessage;
+    const [, id, method, params] = msg as CompactRequestCompleteMessage<HighlightParams>;
     try {
       if (method !== 'highlight') return;
       if (typeof params !== 'object') return;
       const {code, lang} = params as HighlightParams;
       if (typeof code !== 'string') return;
-      if (typeof lang !== 'string' || lang !== undefined) return;
+      if (typeof lang !== 'string' && lang !== undefined) return;
       const res = highlight(code, lang);
       const response: CompactResponseCompleteMessage<TokenNode> = [CompactMessageType.ResponseComplete, id, res];
       postMessage(response);
@@ -25,7 +25,7 @@ if (isWorker) {
       postMessage(response);
     }
   };
-
+  
   const ready: CompactNotificationMessage = [CompactMessageType.Notification, 'ready'];
   postMessage(ready);
 }
