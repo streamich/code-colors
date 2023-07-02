@@ -29,7 +29,16 @@ const normalizeToken = (node: HljsNode): Token => {
   if (typeof node === 'string') return node.length;
   const {children, language, scope = ''} = node;
   const normalizedScope = scope.replace(tokenRegex, '-');
-  const token: Token = [normalizedScope, children.map(normalizeToken)];
+  const tokenChildren: Token[] = [];
+  const length = children.length;
+  for (let i = 0; i < length; i++) {
+    const child = normalizeToken(children[i]);
+    const last = tokenChildren[tokenChildren.length - 1];
+    if (typeof child === 'number' && typeof last === 'number')
+      tokenChildren[tokenChildren.length - 1] = last + child;
+    else tokenChildren.push(child);
+  }
+  const token: Token = [normalizedScope, tokenChildren];
   if (language) token.push(language);
   return token;
 };
