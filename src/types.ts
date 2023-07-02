@@ -6,9 +6,8 @@ export interface HljsDataNode {
 
 export type HljsNode = string | HljsDataNode;
 
-export type Token = number | [type: string, children: Token[], language?: string];
-
-export type HighlightResult = [language: string, token: Token | number];
+export type TokenNode = [type: string, children: Token[], language?: string];
+export type Token = number | TokenNode;
 
 export interface HighlightParams {
   code: string;

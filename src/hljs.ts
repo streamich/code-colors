@@ -1,4 +1,4 @@
-import type {HighlightResult, HljsNode, Token} from "./types";
+import type {HljsNode, Token, TokenNode} from "./types";
 const hljs = require('highlight.js/lib/common');
 
 hljs.configure({classPrefix: ''});
@@ -23,25 +23,30 @@ hljs.registerLanguage('powershell', require('highlight.js/lib/languages/powershe
 hljs.registerLanguage('vim', require('highlight.js/lib/languages/vim'));
 hljs.registerLanguage('fsharp', require('highlight.js/lib/languages/fsharp'));
 
+const tokenRegex = /[_:]/g;
+
 const normalizeToken = (node: HljsNode): Token => {
   if (typeof node === 'string') return node.length;
   const {children, language, scope = ''} = node;
-  const token: Token = [scope, children.map(normalizeToken)];
+  const normalizedScope = scope.replace(tokenRegex, '-');
+  const token: Token = [normalizedScope, children.map(normalizeToken)];
   if (language) token.push(language);
   return token;
 };
 
-export const highlight = (code: string, lang?: string): HighlightResult => {
+export const highlight = (code: string, lang?: string): TokenNode => {
   if (lang) lang = lang.toLowerCase();
   try {
     const {language, _emitter} = lang ? hljs.highlight(code, {language: lang}) : hljs.highlightAuto(code);
-    const token = normalizeToken(_emitter.rootNode as HljsNode)
-    return [language, token];
+    const token = normalizeToken(_emitter.rootNode as HljsNode) as TokenNode;
+    token[0] = 'language-' + language; 
+    return token;
   } catch (error) {
     if (error && typeof error === 'object' && typeof error.message === 'string' && error.message.startsWith('Unknown language:')) {
       const {language, _emitter} = hljs.highlightAuto(code);
-      const token = normalizeToken(_emitter.rootNode as HljsNode)
-      return [language, token];
+      const token = normalizeToken(_emitter.rootNode as HljsNode) as TokenNode;
+      token[0] = 'language-' + language; 
+      return token;
     }
     throw error;
   }

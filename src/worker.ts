@@ -1,7 +1,7 @@
 import {highlight} from './hljs';
 import {CompactMessageType} from 'json-joy/lib/reactive-rpc/common/codec/compact/constants';
 import type {CompactNotificationMessage, CompactRequestCompleteMessage, CompactResponseCompleteMessage, CompactResponseErrorMessage} from 'json-joy/lib/reactive-rpc/common/codec/compact/types';
-import type {HighlightParams, HighlightResult} from './types';
+import type {HighlightParams, TokenNode} from './types';
 
 const isWorker = ('undefined' !== typeof WorkerGlobalScope) && ("function" === typeof importScripts);
 
@@ -18,7 +18,7 @@ if (isWorker) {
       if (typeof code !== 'string') return;
       if (typeof lang !== 'string' || lang !== undefined) return;
       const res = highlight(code, lang);
-      const response: CompactResponseCompleteMessage<HighlightResult> = [CompactMessageType.ResponseComplete, id, res];
+      const response: CompactResponseCompleteMessage<TokenNode> = [CompactMessageType.ResponseComplete, id, res];
       postMessage(response);
     } catch (error) {
       const response: CompactResponseErrorMessage = [CompactMessageType.ResponseError, id, error];
