@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/streamich/code-colors/compare/v1.0.0...v2.0.0) (2024-05-21)
+
+
+### Features
+
+* 🎸 bump major ([4598fa6](https://github.com/streamich/code-colors/commit/4598fa6848a6ea6243b22aa93b8686fd2be6abc9))
+
+
+### BREAKING CHANGES
+
+* 🧨 bump major
+
 # 1.0.0 (2024-05-21)
 
 ### Bug Fixes

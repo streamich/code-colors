@@ -1,6 +1,6 @@
 {
   "name": "code-colors",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Code syntax highlighting for the web",
   "main": "lib/index.js",
   "files": [
