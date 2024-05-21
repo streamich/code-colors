@@ -47,8 +47,11 @@ export class CodeColors {
   }
 
   public readonly highlight = async (code: string, lang?: string): Promise<TokenNode> => {
+    console.log(1);
     await this.workerReady;
+    console.log(2);
     const id = this.id++;
+    // return [['a'], []];
     const msg: CompactRequestCompleteMessage<HighlightParams> = [
       CompactMessageType.RequestComplete,
       id,

@@ -1,4 +1,4 @@
-import {highlight} from './hljs';
+import {highlight} from './highlight';
 
 if (typeof window !== 'undefined') {
   (<any>window).highlight = highlight;

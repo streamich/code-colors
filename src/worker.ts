@@ -1,4 +1,4 @@
-import {highlight} from './hljs';
+import {highlight} from './highlight';
 import {CompactMessageType} from '@jsonjoy.com/reactive-rpc/lib/common/codec/compact/constants';
 import type {
   CompactNotificationMessage,
@@ -22,7 +22,7 @@ if (isWorker) {
       const {code, lang} = params as HighlightParams;
       if (typeof code !== 'string') return;
       if (typeof lang !== 'string' && lang !== undefined) return;
-      const res = highlight(code, lang);
+      const res = highlight(code, lang ?? 'c');
       const response: CompactResponseCompleteMessage<TokenNode> = [CompactMessageType.ResponseComplete, id, res];
       postMessage(response);
     } catch (error) {
