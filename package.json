@@ -30,7 +30,7 @@
   "dependencies": {
     "highlight.js": "^11.8.0",
     "json-joy": "^9.3.0",
-    "thingies": "^1.11.1"
+    "thingies": "^2.1.0"
   },
   "peerDependencies": {
     "tslib": "*"

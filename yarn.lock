@@ -2168,6 +2168,7 @@ statuses@2.0.1:
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -2263,10 +2264,10 @@ terser@^5.10.0, terser@^5.16.8:
     commander "^2.20.0"
     source-map-support "~0.5.20"
 
-thingies@^1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/thingies/-/thingies-1.11.1.tgz#47a648e2b42c3bb011e493e0c99df20a2758c25d"
-  integrity sha512-SXWTuQA6TFjpfV4xiwPs4FkHashZShR/Hugosrm9sRMm63fAdgZaWKixt5YvuP6VwDaAROcDwf9cFeuw1DeekA==
+thingies@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/thingies/-/thingies-2.1.0.tgz#e0f771d5bc42e147fe9518be48f667319e748e25"
+  integrity sha512-SASxQdAtapX03qTa1V/kt9UGhQLUoP54luRasJxZoleeAL+PSQsBlIAGNxj1FoayglyCGUhxByFgSn7dh2JFog==
 
 thunky@^1.0.2:
   version "1.1.0"
