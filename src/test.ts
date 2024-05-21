@@ -1,5 +1,5 @@
-import {highlight} from "./hljs";
-import {CodeColors} from "./CodeColors";
+import {highlight} from './hljs';
+import {CodeColors} from './CodeColors';
 
 const main = async () => {
   const code = `
@@ -19,7 +19,7 @@ const main = async () => {
   const res2 = await highlight('<h1>Hello World!</h1><style>.test {border: 1px solid red;}</style>');
   console.log('xml', res2);
   console.assert(res2[0][0] === 'language-xml', 'Auto-detection failed');
-  
+
   console.log('Can parse JavaScript in Worker thread');
   const url = (<any>document.currentScript).src;
   console.log('Worker URL:', url);

@@ -1,4 +1,4 @@
-import type {HljsNode, Token, TokenNode} from "./types";
+import type {HljsNode, Token, TokenNode} from './types';
 const hljs = require('highlight.js/lib/common');
 
 hljs.configure({classPrefix: ''});
@@ -24,10 +24,10 @@ hljs.registerLanguage('vim', require('highlight.js/lib/languages/vim'));
 hljs.registerLanguage('fsharp', require('highlight.js/lib/languages/fsharp'));
 
 const normalizeScope = (name: string): string[] => {
-  if (name.startsWith('language:')) return [name.replace('language:', 'language-')]
+  if (name.startsWith('language:')) return [name.replace('language:', 'language-')];
   if (name.includes('.')) {
     const pieces = name.split('.');
-    return [pieces.shift()!, ...(pieces.map((x, i) => `${x}${"_".repeat(i + 1)}`))];
+    return [pieces.shift()!, ...pieces.map((x, i) => `${x}${'_'.repeat(i + 1)}`)];
   }
   return [name];
 };
@@ -40,8 +40,7 @@ const normalizeToken = (node: HljsNode): Token => {
   for (let i = 0; i < length; i++) {
     const child = normalizeToken(children[i]);
     const last = tokenChildren[tokenChildren.length - 1];
-    if (typeof child === 'number' && typeof last === 'number')
-      tokenChildren[tokenChildren.length - 1] = last + child;
+    if (typeof child === 'number' && typeof last === 'number') tokenChildren[tokenChildren.length - 1] = last + child;
     else tokenChildren.push(child);
   }
   const token: Token = [normalizeScope(scope), tokenChildren];
@@ -54,13 +53,18 @@ export const highlight = (code: string, lang?: string): TokenNode => {
   try {
     const {language, _emitter} = lang ? hljs.highlight(code, {language: lang}) : hljs.highlightAuto(code);
     const token = normalizeToken(_emitter.rootNode as HljsNode) as TokenNode;
-    token[0] = ['language-' + language]; 
+    token[0] = ['language-' + language];
     return token;
   } catch (error) {
-    if (error && typeof error === 'object' && typeof error.message === 'string' && error.message.startsWith('Unknown language:')) {
+    if (
+      error &&
+      typeof error === 'object' &&
+      typeof error.message === 'string' &&
+      error.message.startsWith('Unknown language:')
+    ) {
       const {language, _emitter} = hljs.highlightAuto(code);
       const token = normalizeToken(_emitter.rootNode as HljsNode) as TokenNode;
-      token[0] = ['language-' + language]; 
+      token[0] = ['language-' + language];
       return token;
     }
     throw error;

@@ -5,4 +5,4 @@ export * from './CodeColors';
 import './window';
 import './worker';
 
-// import './test';
+import './test';

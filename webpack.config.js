@@ -14,13 +14,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'code-colors',
     }),
-    new webpack.ContextReplacementPlugin(
-      /\/highlight.js\//,
-      (data) => {
-        delete data.dependencies[0].critical;
-        return data;
-      },
-    ),
+    new webpack.ContextReplacementPlugin(/\/highlight.js\//, (data) => {
+      delete data.dependencies[0].critical;
+      return data;
+    }),
   ],
   module: {
     rules: [
@@ -37,5 +34,5 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-  }
+  },
 };

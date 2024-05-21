@@ -1,7 +1,11 @@
-import {CompactMessageType} from "json-joy/lib/reactive-rpc/common/codec/compact/constants";
-import {Defer} from "thingies";
-import type {CompactRequestCompleteMessage, CompactResponseCompleteMessage, CompactResponseErrorMessage} from "json-joy/lib/reactive-rpc/common/codec/compact/types";
-import type {HighlightParams, TokenNode} from "./types";
+import {CompactMessageType} from 'json-joy/lib/reactive-rpc/common/codec/compact/constants';
+import {Defer} from 'thingies/lib/Defer';
+import type {
+  CompactRequestCompleteMessage,
+  CompactResponseCompleteMessage,
+  CompactResponseErrorMessage,
+} from 'json-joy/lib/reactive-rpc/common/codec/compact/types';
+import type {HighlightParams, TokenNode} from './types';
 
 export class CodeColors {
   protected id: number = 0;
@@ -13,7 +17,7 @@ export class CodeColors {
     const ready = new Defer<void>();
     this.workerReady = ready.promise;
     const js = `importScripts("${workerUrl}");`;
-    const blob = new Blob([js], {type: "text/javascript"});
+    const blob = new Blob([js], {type: 'text/javascript'});
     const objectUrl = URL.createObjectURL(blob);
     this.worker = new Worker(objectUrl);
     URL.revokeObjectURL(objectUrl);
@@ -45,7 +49,12 @@ export class CodeColors {
   public readonly highlight = async (code: string, lang?: string): Promise<TokenNode> => {
     await this.workerReady;
     const id = this.id++;
-    const msg: CompactRequestCompleteMessage<HighlightParams> = [CompactMessageType.RequestComplete, id, 'highlight', {code, lang}];
+    const msg: CompactRequestCompleteMessage<HighlightParams> = [
+      CompactMessageType.RequestComplete,
+      id,
+      'highlight',
+      {code, lang},
+    ];
     const call = new Defer<TokenNode>();
     this.worker.postMessage(msg);
     this.calls.set(id, call);
