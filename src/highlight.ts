@@ -89,7 +89,7 @@ const collectChildren = (children: (string | prism.Token)[], tokens: Token[]): v
 
 export const highlight = (code: string, lang: string): TokenNode => {
   lang = lang.toLowerCase();
-  const grammar = prism.languages[lang] ?? prism.languages[lang = 'c'];
+  const grammar = prism.languages[lang] ?? prism.languages[(lang = 'c')];
   const children = prism.tokenize(code, grammar);
   const token: TokenNode = [['language-' + lang], []];
   collectChildren(children, token[1]);
@@ -100,11 +100,18 @@ const printToken0 = (tab: string, str: string, token: Token, offset: number): [s
   if (typeof token === 'number')
     return ['(' + offset + ',' + token + '): ' + JSON.stringify(str.slice(offset, offset + token)), offset + token];
   const [type, children] = token;
-  return [type.join(', ') + printTree(tab, children.map((child) => (tab) => {
-    const p = printToken0(tab, str, child, offset);
-    offset = p[1];
-    return p[0];
-  })), offset];
+  return [
+    type.join(', ') +
+      printTree(
+        tab,
+        children.map((child) => (tab) => {
+          const p = printToken0(tab, str, child, offset);
+          offset = p[1];
+          return p[0];
+        }),
+      ),
+    offset,
+  ];
 };
 
 export const print = (str: string, token: Token) => printToken0('', str, token, 0)[0];
