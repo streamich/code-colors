@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/streamich/code-colors#readme",
   "dependencies": {
+    "@jsonjoy.com/reactive-rpc": "^1.3.0",
     "highlight.js": "^11.8.0",
-    "json-joy": "^9.3.0",
     "thingies": "^2.1.0"
   },
   "peerDependencies": {

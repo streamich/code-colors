@@ -1,10 +1,10 @@
-import {CompactMessageType} from 'json-joy/lib/reactive-rpc/common/codec/compact/constants';
+import {CompactMessageType} from '@jsonjoy.com/reactive-rpc/lib/common/codec/compact/constants';
 import {Defer} from 'thingies/lib/Defer';
 import type {
   CompactRequestCompleteMessage,
   CompactResponseCompleteMessage,
   CompactResponseErrorMessage,
-} from 'json-joy/lib/reactive-rpc/common/codec/compact/types';
+} from '@jsonjoy.com/reactive-rpc/lib/common/codec/compact/types';
 import type {HighlightParams, TokenNode} from './types';
 
 export class CodeColors {

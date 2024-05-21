@@ -1,11 +1,11 @@
 import {highlight} from './hljs';
-import {CompactMessageType} from 'json-joy/lib/reactive-rpc/common/codec/compact/constants';
+import {CompactMessageType} from '@jsonjoy.com/reactive-rpc/lib/common/codec/compact/constants';
 import type {
   CompactNotificationMessage,
   CompactRequestCompleteMessage,
   CompactResponseCompleteMessage,
   CompactResponseErrorMessage,
-} from 'json-joy/lib/reactive-rpc/common/codec/compact/types';
+} from '@jsonjoy.com/reactive-rpc/lib/common/codec/compact/types';
 import type {HighlightParams, TokenNode} from './types';
 
 const isWorker = 'undefined' !== typeof WorkerGlobalScope && 'function' === typeof importScripts;
