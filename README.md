@@ -1,6 +1,6 @@
 # code-colors
 
-Code syntax highlighting for the web.
+Code syntax highlighting for the web. Uses Prism for parsing.
 
 Why I created this library? I needed a simple React component that highlights
 code, but there was none which satisfied the following requirements:
