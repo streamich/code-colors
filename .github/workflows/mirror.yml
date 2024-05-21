@@ -18,4 +18,4 @@ jobs:
           git config user.name "streamich"
           git config user.email "code-colors+streamich@users.noreply.github.com"
           git remote add mirror "https://oauth2:${token}@gitlab.com/streamich/code-colors.git"
-          git push mirror master
+          git push mirror main
