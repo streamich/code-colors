@@ -4,7 +4,7 @@
  */
 (globalThis as any).Prism = {
   ...(globalThis as any).Prism,
-	disableWorkerMessageHandler: true
+  disableWorkerMessageHandler: true,
 };
 
 export type * from './types';
