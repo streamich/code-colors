@@ -1,9 +1,8 @@
 ## [2.0.1](https://github.com/streamich/code-colors/compare/v2.0.0...v2.0.1) (2024-05-23)
 
-
 ### Bug Fixes
 
-* 🐛 disable Prism's worker thread message parsing ([afed73f](https://github.com/streamich/code-colors/commit/afed73f4f303466e1ac457a26d8dcb35c2917ff9))
+- 🐛 disable Prism's worker thread message parsing ([afed73f](https://github.com/streamich/code-colors/commit/afed73f4f303466e1ac457a26d8dcb35c2917ff9))
 
 # [2.0.0](https://github.com/streamich/code-colors/compare/v1.0.0...v2.0.0) (2024-05-21)
 

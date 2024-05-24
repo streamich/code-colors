@@ -48,7 +48,7 @@ export const aliases: Record<string, string> = {
 
   clj: 'clojure',
   cljs: 'clojure',
-  
+
   hpp: 'cpp',
   'c++': 'cpp',
   'h++': 'cpp',
