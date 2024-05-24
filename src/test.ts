@@ -1,4 +1,4 @@
-import {highlight, print} from './highlight';
+import {tokenize, print} from './highlight';
 import {CodeColors} from './CodeColors';
 import type {Token} from './types';
 
@@ -13,14 +13,14 @@ const main = async () => {
   `;
 
   console.log('Can parse JavaScript');
-  const res1 = await highlight(code, 'js');
+  const res1 = await tokenize(code, 'js');
   console.log('js', res1);
   console.assert(res1[1].length > 10, 'Returned unexpected number of tokens');
   printToken(code, res1);
 
   console.log('Can parse nested languages');
   const code2 = '<h1>Hello World!</h1><style>.test {border: 1px solid red;}</style>';
-  const res2 = await highlight(code2, 'html');
+  const res2 = await tokenize(code2, 'html');
   console.log('xml', res2);
   printToken(code2, res2);
 
@@ -28,14 +28,14 @@ const main = async () => {
   const url = (<any>document.currentScript).src;
   console.log('Worker URL:', url);
   const colors = new CodeColors(url);
-  const res3 = await colors.highlight(code, 'jsx');
+  const res3 = await colors.tokenize(code, 'js');
   printToken(code, res3);
 
   console.log('Can parse JSX');
   const code4 = `
 const component = () => <div style={{border: '1px solid red'}}>Hello World!</div>;
   `;
-  const res4 = await highlight(code4, 'jsx');
+  const res4 = await colors.tokenize(code4, 'jsx');
   console.log('jsx', res4);
   printToken(code4, res4);
 };

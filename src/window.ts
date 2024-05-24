@@ -1,5 +1,5 @@
-import {highlight} from './highlight';
+import {tokenize} from './highlight';
 
 if (typeof window !== 'undefined') {
-  (<any>window).highlight = highlight;
+  (<any>window).highlight = tokenize;
 }

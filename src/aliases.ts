@@ -1,3 +1,5 @@
+const ts = 'typescript';
+
 export const aliases: Record<string, string> = {
   feature: 'cucumber',
 
@@ -35,8 +37,11 @@ export const aliases: Record<string, string> = {
 
   coffee: 'coffeescript',
 
-  ts: 'typescript',
-  'd.ts': 'typescript',
+  ts,
+  dts: ts,
+  mts: ts,
+  cts: ts,
+  'd.ts': ts,
 
   list: 'cl',
   el: 'cl',
