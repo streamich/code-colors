@@ -8,10 +8,10 @@
 };
 
 export type * from './types';
-export * from './highlight';
+export * from './tokenize';
 export * from './CodeColors';
 
 import './window';
 import './worker';
 
-// import './test';
+import './test';

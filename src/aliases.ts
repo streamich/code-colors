@@ -26,6 +26,7 @@ export const aliases: Record<string, string> = {
   b: 'brainfuck',
 
   h: 'c',
+  'c-like': 'clike',
 
   cfml: 'cfm',
   cfc: 'cfm',

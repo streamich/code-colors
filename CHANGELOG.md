@@ -1,15 +1,13 @@
 # [2.1.0](https://github.com/streamich/code-colors/compare/v2.0.1...v2.1.0) (2024-05-24)
 
-
 ### Bug Fixes
 
-* remove test import ([0cb6101](https://github.com/streamich/code-colors/commit/0cb6101cad84039d672bd44f8a71fe62e92adcac))
-
+- remove test import ([0cb6101](https://github.com/streamich/code-colors/commit/0cb6101cad84039d672bd44f8a71fe62e92adcac))
 
 ### Features
 
-* 🎸 add language aliases ([936d374](https://github.com/streamich/code-colors/commit/936d3741a453d88cfaf283b0403547fcb35aebe8))
-* 🎸 load languages async ([f3963f4](https://github.com/streamich/code-colors/commit/f3963f44e3fcb01d843ffa3b7ad37f5f063642c0))
+- 🎸 add language aliases ([936d374](https://github.com/streamich/code-colors/commit/936d3741a453d88cfaf283b0403547fcb35aebe8))
+- 🎸 load languages async ([f3963f4](https://github.com/streamich/code-colors/commit/f3963f44e3fcb01d843ffa3b7ad37f5f063642c0))
 
 ## [2.0.1](https://github.com/streamich/code-colors/compare/v2.0.0...v2.0.1) (2024-05-23)
 

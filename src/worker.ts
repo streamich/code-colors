@@ -1,4 +1,4 @@
-import {tokenizeAsync} from './highlight';
+import {tokenizeAsync} from './tokenize';
 import {CompactMessageType} from '@jsonjoy.com/reactive-rpc/lib/common/codec/compact/constants';
 import type {
   CompactNotificationMessage,
