@@ -1,4 +1,4 @@
-import {tokenize, print} from './highlight';
+import {tokenize, print} from './tokenize';
 import {CodeColors} from './CodeColors';
 import type {Token} from './types';
 
@@ -38,6 +38,14 @@ const component = () => <div style={{border: '1px solid red'}}>Hello World!</div
   const res4 = await colors.tokenize(code4, 'jsx');
   console.log('jsx', res4);
   printToken(code4, res4);
+
+  console.log('TypeScript');
+  const code5 = `
+export type Hello<T> = string & {brand: T};
+  `;
+  const res5 = await colors.tokenize(code5, 'ts');
+  console.log('jsx', res5);
+  printToken(code5, res5);
 };
 
 if (typeof window !== 'undefined') {
