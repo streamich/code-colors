@@ -33,8 +33,7 @@ const collectChildren = (children: (string | prism.Token)[], tokens: Token[]): v
 
 export const tokenize = (code: string, lang: string): TokenNode => {
   lang = lang.toLowerCase();
-  const grammar = prism.languages[lang] ?? prism.languages[(lang = 'c')];
-  // const grammar = prism.getLang(lang) ?? prism.getLang('c')!;
+  const grammar = prism.languages[lang] ?? prism.languages[(lang = 'clike')];
   const children = prism.tokenize(code, grammar);
   const token: TokenNode = [['language-' + lang], []];
   collectChildren(children, token[1]);
@@ -44,7 +43,14 @@ export const tokenize = (code: string, lang: string): TokenNode => {
 export const tokenizeAsync = async (code: string, lang: string): Promise<TokenNode> => {
   lang = lang.toLowerCase();
   if (!prismutils.hasLang(lang) && aliases[lang]) lang = aliases[lang];
-  if (!prismutils.hasLang(lang)) await prismutils.loadLang(lang);
+  if (!prismutils.hasLang(lang)) {
+    try {
+      await prismutils.loadLang(lang);
+    } catch (error) {
+      console.log('Failed to load language:', lang);
+      console.error(error);
+    }
+  }
   return tokenize(code, lang);
 };
 

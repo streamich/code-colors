@@ -47,7 +47,6 @@ export type Hello<T> = string & {brand: T};
   console.log('jsx', res5);
   printToken(code5, res5);
 
-
   console.log('C');
   const code6 = `
 #include <stdio.h>
@@ -60,6 +59,11 @@ int main() {
   const res6 = await colors.tokenize(code6, 'c-like');
   console.log('C', res6);
   printToken(code6, res6);
+
+  console.log('Use c-like for unknown languages');
+  const res7 = await colors.tokenize(code6, 'asdfasddfasdfasdf');
+  console.log('Unknown langauge', res7);
+  printToken(code6, res7);
 };
 
 if (typeof window !== 'undefined') {
