@@ -43,9 +43,23 @@ const component = () => <div style={{border: '1px solid red'}}>Hello World!</div
   const code5 = `
 export type Hello<T> = string & {brand: T};
   `;
-  const res5 = await colors.tokenize(code5, 'ts');
+  const res5 = await colors.tokenize(code5, 'TS');
   console.log('jsx', res5);
   printToken(code5, res5);
+
+
+  console.log('C');
+  const code6 = `
+#include <stdio.h>
+
+int main() {
+  printf("Hello, World!");
+  return 0;
+}
+  `;
+  const res6 = await colors.tokenize(code6, 'c-like');
+  console.log('C', res6);
+  printToken(code6, res6);
 };
 
 if (typeof window !== 'undefined') {

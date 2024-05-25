@@ -42,6 +42,7 @@ export const tokenize = (code: string, lang: string): TokenNode => {
 };
 
 export const tokenizeAsync = async (code: string, lang: string): Promise<TokenNode> => {
+  lang = lang.toLowerCase();
   if (!prismutils.hasLang(lang) && aliases[lang]) lang = aliases[lang];
   if (!prismutils.hasLang(lang)) await prismutils.loadLang(lang);
   return tokenize(code, lang);
