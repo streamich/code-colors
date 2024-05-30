@@ -42,13 +42,18 @@ export const tokenize = (code: string, lang: string): TokenNode => {
 
 export const tokenizeAsync = async (code: string, lang: string): Promise<TokenNode> => {
   lang = lang.toLowerCase();
-  if (!prismutils.hasLang(lang) && aliases[lang]) lang = aliases[lang];
-  if (!prismutils.hasLang(lang)) {
-    try {
-      await prismutils.loadLang(lang);
-    } catch (error) {
-      console.log('Failed to load language:', lang);
-      console.error(error);
+  let langs: string[] = [lang];
+  if (!prismutils.hasLang(lang) && aliases[lang])
+    langs = aliases[lang] instanceof Array ? <string[]>aliases[lang] : [<string>aliases[lang]];
+  lang = langs[langs.length - 1];
+  for (const l of langs) {
+    if (!prismutils.hasLang(l)) {
+      try {
+        await prismutils.loadLang(l);
+      } catch (error) {
+        console.log('Failed to load language:', l);
+        console.error(error);
+      }
     }
   }
   return tokenize(code, lang);

@@ -1,11 +1,10 @@
 # [2.2.0](https://github.com/streamich/code-colors/compare/v2.1.0...v2.2.0) (2024-05-25)
 
-
 ### Features
 
-* 🎸 handle unknown langauge as c-like ([56ab917](https://github.com/streamich/code-colors/commit/56ab917fe0ae2a4ed7d7d56f585e44f00164d275))
-* 🎸 lowercase language name ([5d1fa7f](https://github.com/streamich/code-colors/commit/5d1fa7f25cb31788e82c27a3ac1d5efe3dc4f556))
-* 🎸 resolve aliases ([0bdec66](https://github.com/streamich/code-colors/commit/0bdec669b1b7acc932dd1e6f94c3be2948b6a766))
+- 🎸 handle unknown langauge as c-like ([56ab917](https://github.com/streamich/code-colors/commit/56ab917fe0ae2a4ed7d7d56f585e44f00164d275))
+- 🎸 lowercase language name ([5d1fa7f](https://github.com/streamich/code-colors/commit/5d1fa7f25cb31788e82c27a3ac1d5efe3dc4f556))
+- 🎸 resolve aliases ([0bdec66](https://github.com/streamich/code-colors/commit/0bdec669b1b7acc932dd1e6f94c3be2948b6a766))
 
 # [2.1.0](https://github.com/streamich/code-colors/compare/v2.0.1...v2.1.0) (2024-05-24)
 
