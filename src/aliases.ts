@@ -1,6 +1,8 @@
-const ts = 'typescript';
+const js = 'javascript';
+const ts = [js, 'typescript'];
+const tsx = [...ts, 'jsx', 'tsx']
 
-export const aliases: Record<string, string> = {
+export const aliases: Record<string, string | string[]> = {
   feature: 'cucumber',
 
   adb: 'ada',
@@ -31,10 +33,11 @@ export const aliases: Record<string, string> = {
   cfml: 'cfm',
   cfc: 'cfm',
 
-  js: 'javascript',
-  ecmascript: 'javascript',
-  cjs: 'javascript',
-  mjs: 'javascript',
+  js,
+  ecmascript: js,
+  cjs: js,
+  mjs: js,
+  jsx: [js, 'jsx'],
 
   coffee: 'coffeescript',
 
@@ -43,6 +46,7 @@ export const aliases: Record<string, string> = {
   mts: ts,
   cts: ts,
   'd.ts': ts,
+  tsx,
 
   list: 'cl',
   el: 'cl',
