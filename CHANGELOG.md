@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/streamich/code-colors/compare/v2.2.0...v2.3.0) (2024-05-30)
+
+
+### Features
+
+* 🎸 load tsx and all its dependencies ([a74b7e6](https://github.com/streamich/code-colors/commit/a74b7e63123f609cd90b4675110343d13a65bee4))
+
 # [2.2.0](https://github.com/streamich/code-colors/compare/v2.1.0...v2.2.0) (2024-05-25)
 
 ### Features
