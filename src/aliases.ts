@@ -1,6 +1,6 @@
 const js = 'javascript';
 const ts = [js, 'typescript'];
-const tsx = [...ts, 'jsx', 'tsx']
+const tsx = [...ts, 'jsx', 'tsx'];
 
 export const aliases: Record<string, string | string[]> = {
   feature: 'cucumber',

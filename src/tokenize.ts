@@ -43,7 +43,8 @@ export const tokenize = (code: string, lang: string): TokenNode => {
 export const tokenizeAsync = async (code: string, lang: string): Promise<TokenNode> => {
   lang = lang.toLowerCase();
   let langs: string[] = [lang];
-  if (!prismutils.hasLang(lang) && aliases[lang]) langs = aliases[lang] instanceof Array ? <string[]>aliases[lang] : [<string>aliases[lang]];
+  if (!prismutils.hasLang(lang) && aliases[lang])
+    langs = aliases[lang] instanceof Array ? <string[]>aliases[lang] : [<string>aliases[lang]];
   lang = langs[langs.length - 1];
   for (const l of langs) {
     if (!prismutils.hasLang(l)) {
