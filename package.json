@@ -32,9 +32,8 @@
   },
   "homepage": "https://github.com/streamich/code-colors#readme",
   "dependencies": {
-    "@jsonjoy.com/reactive-rpc": "^2.2.0",
-    "prismjs": "^1.29.0",
-    "thingies": "^2.4.0"
+    "prismjs": "^1.30.0",
+    "thingies": "^2.5.0"
   },
   "peerDependencies": {
     "tslib": "*"
