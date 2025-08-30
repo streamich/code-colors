@@ -1,3 +1,11 @@
+# [2.4.0](https://github.com/streamich/code-colors/compare/v2.3.1...v2.4.0) (2025-08-30)
+
+
+### Features
+
+* update deps ([30f9f6a](https://github.com/streamich/code-colors/commit/30f9f6a65ed8114e40bb749f10c7b45bd8883d00))
+* use local types and constants ([ddeac98](https://github.com/streamich/code-colors/commit/ddeac98c23d9c0b0561907bb3824681cc07ecd70))
+
 ## [2.3.1](https://github.com/streamich/code-colors/compare/v2.3.0...v2.3.1) (2024-10-10)
 
 ### Bug Fixes
