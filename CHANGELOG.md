@@ -1,9 +1,8 @@
 ## [2.3.1](https://github.com/streamich/code-colors/compare/v2.3.0...v2.3.1) (2024-10-10)
 
-
 ### Bug Fixes
 
-* 🐛 update dependencies ([7ba5c49](https://github.com/streamich/code-colors/commit/7ba5c49df25e17a7825e523d91b4357dc9a153c1))
+- 🐛 update dependencies ([7ba5c49](https://github.com/streamich/code-colors/commit/7ba5c49df25e17a7825e523d91b4357dc9a153c1))
 
 # [2.3.0](https://github.com/streamich/code-colors/compare/v2.2.0...v2.3.0) (2024-05-30)
 

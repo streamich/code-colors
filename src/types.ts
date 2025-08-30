@@ -16,7 +16,6 @@ export interface HighlightParams {
   lang?: string;
 }
 
-
 /** Must be positive integer. */
 export type Id = number;
 
