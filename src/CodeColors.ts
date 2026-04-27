@@ -27,6 +27,7 @@ export class CodeColors {
           if (!call) return;
           this.calls.delete(id);
           call.resolve(params);
+          break;
         }
         case CompactMessageType.ResponseError: {
           const [, id, error] = msg as CompactResponseErrorMessage;
@@ -34,9 +35,11 @@ export class CodeColors {
           if (!call) return;
           this.calls.delete(id);
           call.reject(error);
+          break;
         }
         case CompactMessageType.Notification: {
           if (msg[1] === 'ready') ready.resolve();
+          break;
         }
       }
     });
