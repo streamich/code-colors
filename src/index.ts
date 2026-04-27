@@ -10,8 +10,19 @@
 export type * from './types';
 export * from './tokenize';
 export * from './CodeColors';
+export {
+  LANGUAGE_DEPS,
+  setComponentsBaseUrl,
+  isLanguageLoaded,
+  isLanguagePending,
+  isLanguageFailed,
+  onLanguageLoad,
+  onLanguageError,
+  loadLang,
+  hasLang,
+} from './prismutils';
 
 import './window';
 import './worker';
 
-// import './test';
+import './test';

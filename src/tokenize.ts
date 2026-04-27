@@ -4,6 +4,15 @@ import {printTree} from 'tree-dump/lib/printTree';
 import type {TokenNode, Token} from './types';
 import {aliases} from './aliases';
 
+export class LanguageNotLoadedError extends Error {
+  public readonly lang: string;
+  constructor(lang: string) {
+    super(`Grammar not loaded: ${lang}`);
+    this.name = 'LanguageNotLoadedError';
+    this.lang = lang;
+  }
+}
+
 const collectChildren = (children: (string | prism.Token)[], tokens: Token[]): void => {
   const length = children.length;
   for (let i = 0; i < length; i++) {
@@ -33,7 +42,8 @@ const collectChildren = (children: (string | prism.Token)[], tokens: Token[]): v
 
 export const tokenize = (code: string, lang: string): TokenNode => {
   lang = lang.toLowerCase();
-  const grammar = prism.languages[lang] ?? prism.languages[(lang = 'clike')];
+  const grammar = prism.languages[lang];
+  if (!grammar) throw new LanguageNotLoadedError(lang);
   const children = prism.tokenize(code, grammar);
   const token: TokenNode = [['language-' + lang], []];
   collectChildren(children, token[1]);
@@ -42,21 +52,14 @@ export const tokenize = (code: string, lang: string): TokenNode => {
 
 export const tokenizeAsync = async (code: string, lang: string): Promise<TokenNode> => {
   lang = lang.toLowerCase();
-  let langs: string[] = [lang];
-  if (!prismutils.hasLang(lang) && aliases[lang])
-    langs = aliases[lang] instanceof Array ? <string[]>aliases[lang] : [<string>aliases[lang]];
-  lang = langs[langs.length - 1];
-  for (const l of langs) {
-    if (!prismutils.hasLang(l)) {
-      try {
-        await prismutils.loadLang(l);
-      } catch (error) {
-        console.log('Failed to load language:', l);
-        console.error(error);
-      }
-    }
+  let resolvedLang = lang;
+  if (!prismutils.hasLang(lang) && aliases[lang]) {
+    const alias = aliases[lang];
+    const chain = Array.isArray(alias) ? (alias as string[]) : [alias as string];
+    resolvedLang = chain[chain.length - 1];
   }
-  return tokenize(code, lang);
+  await prismutils.loadLang(resolvedLang);
+  return tokenize(code, resolvedLang);
 };
 
 const printToken0 = (tab: string, str: string, token: Token, offset: number): [string, offset: number] => {
