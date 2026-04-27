@@ -51,4 +51,3 @@ export const loadScript = async (src: string): Promise<void> => {
     }
   });
 };
-
