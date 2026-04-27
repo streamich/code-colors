@@ -1,3 +1,16 @@
+# [2.5.0](https://github.com/streamich/code-colors/compare/v2.4.0...v2.5.0) (2026-04-27)
+
+
+### Bug Fixes
+
+* 🐛 add missing breaks ([61333c9](https://github.com/streamich/code-colors/commit/61333c9638c4625d7e9e4c37c4a87c9f77cf90eb))
+
+
+### Features
+
+* 🎸 improve language loading and error handling ([a11ca29](https://github.com/streamich/code-colors/commit/a11ca2909d8f4e7c203ec0b356b78c5930055f28))
+* 🎸 run Prettier ([1a19016](https://github.com/streamich/code-colors/commit/1a19016d8f0c2833fd9925f82bbf54e0bf73816e))
+
 # [2.4.0](https://github.com/streamich/code-colors/compare/v2.3.1...v2.4.0) (2025-08-30)
 
 ### Features
